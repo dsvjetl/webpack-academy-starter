@@ -5,5 +5,8 @@ export default class Base {
 
     init() {
         console.log('App started...');
+        // call starters...
     }
 }
+
+// Base.classes = {};
