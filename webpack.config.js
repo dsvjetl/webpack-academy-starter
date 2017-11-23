@@ -38,16 +38,32 @@ module.exports = {
                         presets: ['@babel/preset-env']
                     }
                 }
+            },
+            {
+                test: /\.html$/,
+                use: 'raw-loader'
             }
         ]
     },
     plugins: [
-        new BrowserSyncPlugin({
-            // browse to http://localhost:3000/ during development, 
-            // ./public directory is being served 
-            host: 'localhost',
-            port: 3000,
-            server: { baseDir: ['.'] }
-        })
-    ]
+        new BrowserSyncPlugin(
+            // BS Options
+            {
+              files: ['assets/**/*', 'src/**/*'],
+              proxy: "http://localhost:8080",
+              port: 3000,
+              open: false
+            },
+            // plugin options
+            {
+                // prevent BrowserSync from reloading the page
+                // and let Webpack Dev Server take care of this
+                // reload: false
+            }
+          )
+    ],
+    devServer: {
+        contentBase: [ './' ],
+        watchContentBase: true
+    }
 }
