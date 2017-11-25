@@ -8,6 +8,7 @@ module.exports = {
         path: path.join(__dirname, 'dist'),
         publicPath: 'dist'
     },
+    devtool: '#eval-source-map',
     module: {
         rules: [
             {
